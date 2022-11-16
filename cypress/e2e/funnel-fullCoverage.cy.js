@@ -49,7 +49,7 @@ const size = {
   7:'4X',
 }
 
-const boxType = '.dash-boxChoiceOption.secOpt.curate.mx';
+const boxType = '.dash-boxChoiceOption.secOpt.curate.fc';
 
 for(let index = 0; index < 8; index++){
 

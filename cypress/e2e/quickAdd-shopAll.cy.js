@@ -25,7 +25,7 @@ const pdpName = ["Nude Bralette","Nude Bikini","Black Bralette","Black Brief","E
 const len = pdps.length;
 const half = Math.ceil(len/2);
 
-for(let i = 0; i < pdps.length; i++){
+for(let i = 14; i < pdps.length; i++){
 
     describe(`${i}. ${pdpName[i]} sku-${pdps[i]}`, () => {
         it(`pdp ${i} opens size`, () => {

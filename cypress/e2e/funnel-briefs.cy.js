@@ -62,69 +62,56 @@ for(let index = 0; index < 8; index++){
     // const naturlMixedColors = '#eby-subscriptionColor21';
     const naturlMixedColors = '#eby-subscriptionColor22';
 
-    it(`Opens Funnel`, () => {
+    it(`Funnel works properly adding to cart at the end`, () => {
       cy.get(subscriptionButton).click()
-    });
-    it(`Mixed Styles`, () => {
-      cy.wait(5000)
+      cy.wait(2000)
       cy.get(boxType).click()
-    });
-    it(`Sizes ${size[index]}`, () => {
+      cy.wait(500)
       cy.get(sizes).then( el => {
         cy.wrap(el[index]).click();
       })
+
+      switch(index){
+        case 0:
+        case 5:
+        case 6:
+        case 7:
+            cy.wait(5000)
+            cy.get(addToCart).click({ force: true })
+            cy.wait(5000)
+          break; 
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            cy.wait(1000)
+            cy.get(naturlMixedColors).click( { force: true })
+
+            cy.wait(5000)
+            cy.get(addToCart).click({ force: true })
+
+            cy.wait(5000)
+          break;   
+        default:
+          console.error('Size was not found')
+          break;
+      }
+
+      // cy.scrollTo(0, 10);
+      // cy.scrollTo(0, 0);
+      // cy.get(cartIcon).click({ force: true });
+      // cy.get(cartIcon).click();
+
     });
-    switch(index){
-      case 0:
-      case 5:
-      case 6:
-      case 7:
-
-        it(`${index} Add to Cart`, () => {
-          cy.get(addToCart).click()
-          cy.wait(3000)
-        });
-        break; 
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-        it(`${index} Add mix or colors`, () => {
-          cy.wait(5000)
-          cy.get(naturlMixedColors).click( { force: true })
-        });
-        it(`${index} Add to Cart`, () => {
-          cy.wait(5000)
-          cy.get(addToCart).click()
-        });
-        break;   
-      default:
-        console.error('Size was not found')
-        break;
-    }
-
-
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            // returning false here prevents Cypress from
-            // failing the test
-            console.log('---------------------------------');
-            console.log(err);
-            console.log(runnable);
-            console.log('---------------------------------');
-            return false
-        })
-
-  // 
-  //   it(`Open cart icon`, () => {
-  //     cy.scrollTo(0, 10);
-  //     cy.scrollTo(0, 0);
-  //     cy.get(cartIcon).click({ force: true });
-  //   });
-  // 
-  //   it(`Check Cart Matches size ${size[index]}`, () => {
-  //     cy.get(cartIcon).click();
-  //   });
-
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        // returning false here prevents Cypress from
+        // failing the test
+        console.log('---------------------------------');
+        console.log(err);
+        console.log(runnable);
+        console.log('---------------------------------');
+        return false
+    })
   });
 }
 
