@@ -8,6 +8,8 @@ module.exports = defineConfig({
     // viewportWidth: 1309,
     // viewportHeight: 726,
     baseUrl: 'http://127.0.0.1:9292/',
+    video:false,
 
   },
+  reporter: 'mochawesome',
 });
