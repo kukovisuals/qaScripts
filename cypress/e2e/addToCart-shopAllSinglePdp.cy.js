@@ -113,7 +113,7 @@ const getJsonData = () => {
     .then((response) => {
         // Parse JSON the body.
         return response.body.products
-        // let body = JSON.parse(response.body);
+        let body = JSON.parse(response.body);
         // expect(response.status).to.eq(200);
         // cy.log(body);
         // expect(response.body).to.not.be.null;

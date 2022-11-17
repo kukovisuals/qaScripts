@@ -15,7 +15,7 @@ const getIframeBody = () => {
 describe('Exit iframe', () => {
   it('exit from iframe if any',() => {
     cy.visit('/');
-      getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+      // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
   });
 });
 
@@ -27,26 +27,26 @@ const giveSubscriptionTry = 'a.textLink.textLinkBtn.btn.hidden_cause';
 describe('Subscribe and save button', () => {
 
   it('Does the right button work?',() => {
-    cy.get(rightButton).click()
+    cy.get(rightButton).click({ force: true })
   });
 
   it('back to homepage',() => {
     cy.visit('/');
-      getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+      // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
   });
 });
 
 describe('Shop best Sellers', () => {
 
   it('Does the left button work?',() => {
-    cy.get(leftButton).click()
+    cy.get(leftButton).click({ force: true })
   });
   const headerTitle = '.ebyBannerSummaryHeader.desktopVer h2.headerCollection';
   const subtext = '.ebyBannerSummaryHeader.desktopVer .headerCollectionSubtext';
 
   it('Has h2 title',() => {
     cy.wait(3000);
-    getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+    // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
     cy.get(headerTitle).should( (el) => {
         expect(el).to.contain('Best Sellers')
     });
@@ -59,18 +59,18 @@ describe('Shop best Sellers', () => {
 
   it('back to homepage',() => {
     cy.visit('/');
-      getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+      // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
   });
 });
 
 describe('Give Subscription a try', () => {
 
   it('Does the left button work?',() => {
-    cy.get(giveSubscriptionTry).click()
+    cy.get(giveSubscriptionTry).click({ force: true })
   });
   it('back to homepage',() => {
     cy.visit('/');
-      getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+      // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
   });
 });
 
@@ -79,14 +79,14 @@ const bennerLayout = '.banner_section.layoutTwo.desktop-only .over_text a';
 describe('New Arrivals', () => {
 
   it('Does the left button work?',() => {
-    cy.get(bennerLayout).click()
+    cy.get(bennerLayout).click({ force: true })
   });
   const headerTitle = '.ebyBannerSummaryHeader.desktopVer h2.headerCollection';
   const subtext = '.ebyBannerSummaryHeader.desktopVer .headerCollectionSubtext';
 
   it('Has h2 title',() => {
     cy.wait(3000);
-    getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+    // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
     cy.get(headerTitle).should( (el) => {
         expect(el).to.contain('New Arrivals')
     });
@@ -98,6 +98,6 @@ describe('New Arrivals', () => {
   });
   it('back to homepage',() => {
     cy.visit('/');
-      getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+      // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
   });
 });

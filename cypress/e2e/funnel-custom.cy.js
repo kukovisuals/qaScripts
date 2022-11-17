@@ -25,18 +25,18 @@ describe('Exit iframe', () => {
       // https://cdn.shopify.com/s/files/1/0313/4062/5964/files/logo-dark-22.svg?v=1666920606
   });
 });
-/*
-  dash-boxChoiceOption primeOpt custom #makeMyCustomBoxBtn
-  .dash-boxChoiceOption.secOpt.curate.mx
-  .dash-boxChoiceOption.secOpt.curate.ab
-  .dash-boxChoiceOption.secOpt.curate.ahw
-  .dash-boxChoiceOption.secOpt.curate.at
-  .dash-boxChoiceOption.secOpt.curate.fc
 
-  1. Each one should go to cart
-  2. Every size should work if it has any 
+const pdpCustom = {
+  0: ["button[data-prodid='5307437383724']","button[data-prodid='5307437383724']","button[data-prodid='5307437383724']"],
+  1: ["button[data-prodid='6626687975468']","button[data-prodid='6626687975468']","button[data-prodid='6626687975468']"],
+  2: ["button[data-prodid='5441467842604']","button[data-prodid='5441467842604']","button[data-prodid='5441467842604']"],
+  3: ["button[data-prodid='5408843104300']","button[data-prodid='5408843104300']","button[data-prodid='5408843104300']"],
+  4: ["button[data-prodid='6626687975468']","button[data-prodid='6626687975468']","button[data-prodid='6626687975468']"],
+  5: ["button[data-prodid='5437827940396']","button[data-prodid='5437827940396']","button[data-prodid='5437827940396']"],
+  6: ["button[data-prodid='6591639912492']","button[data-prodid='6591639912492']","button[data-prodid='6591639912492']"],
+  7: ["button[data-prodid='5408843104300']","button[data-prodid='5408843104300']","button[data-prodid='5408843104300']"],
+}
 
- */
 
 const size = {
   0:'XS',
@@ -59,72 +59,36 @@ for(let index = 0; index < 8; index++){
     const cartIcon = '.eby-mobile-nav #hcw .cart-link.jsDrawerOpenRight';
     const sizes = 'ul.sizeOptListing > li.sortOpt.alt';
     const addToCart = '#ebyAddToCartPopupSaveBtn'
-    // const naturlMixedColors = '#eby-subscriptionColor21';
-    const naturlMixedColors = '#eby-subscriptionColor22';
 
-    it(`Opens Funnel`, () => {
-      cy.get(subscriptionButton).click()
-    });
-    it(`Mixed Styles`, () => {
-      cy.wait(5000)
-      cy.get(boxType).click()
-    });
-    it(`Sizes ${size[index]}`, () => {
+    it(`Funnel works properly adding to cart at the end`, () => {
+      cy.get(subscriptionButton).click({ force: true })
+      cy.wait(2000)
+      cy.get(boxType).click({ force: true })
+      cy.wait(1000)
       cy.get(sizes).then( el => {
         cy.wrap(el[index]).click();
       })
+
+      cy.wait(3000)
+      cy.get('#allPrefGroupChoicePanties ' + pdpCustom[index][0]).click( { force: true })
+      cy.wait(5000)
+      cy.get('#allPrefGroupChoicePanties ' + pdpCustom[index][1]).click( { force: true })
+      cy.wait(1000)
+      cy.get('#allPrefGroupChoicePanties ' + pdpCustom[index][2]).click( { force: true })
+      cy.wait(1000)
+      cy.get(addToCart).click({ force: true })
+      cy.wait(5000)
+
     });
-    switch(index){
-      case 0:
-      case 5:
-      case 6:
-      case 7:
-
-        it(`${index} Add to Cart`, () => {
-          cy.get(addToCart).click()
-          cy.wait(3000)
-        });
-        break; 
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-        it(`${index} Add mix or colors`, () => {
-          cy.wait(5000)
-          cy.get(naturlMixedColors).click( { force: true })
-        });
-        it(`${index} Add to Cart`, () => {
-          cy.wait(5000)
-          cy.get(addToCart).click()
-        });
-        break;   
-      default:
-        console.error('Size was not found')
-        break;
-    }
-
-
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            // returning false here prevents Cypress from
-            // failing the test
-            console.log('---------------------------------');
-            console.log(err);
-            console.log(runnable);
-            console.log('---------------------------------');
-            return false
-        })
-
-  // 
-  //   it(`Open cart icon`, () => {
-  //     cy.scrollTo(0, 10);
-  //     cy.scrollTo(0, 0);
-  //     cy.get(cartIcon).click({ force: true });
-  //   });
-  // 
-  //   it(`Check Cart Matches size ${size[index]}`, () => {
-  //     cy.get(cartIcon).click();
-  //   });
-
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        // returning false here prevents Cypress from
+        // failing the test
+        console.log('---------------------------------');
+        console.log(err);
+        console.log(runnable);
+        console.log('---------------------------------');
+        return false
+    })
   });
 }
 
