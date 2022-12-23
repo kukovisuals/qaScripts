@@ -82,6 +82,8 @@ for( let i = 0; i < pdps.length; i++){
             // failing the test
             console.log('---------------------------------');
             console.log(err);
+
+            
             console.log(runnable);
             console.log('---------------------------------');
             return false

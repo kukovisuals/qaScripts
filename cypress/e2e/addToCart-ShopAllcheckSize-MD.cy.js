@@ -14,6 +14,7 @@ const getIframeBody = () => {
 const url = '/collections/seamless-underwear/products.json?limit=200';
 
 let skus = []
+
 const pdpName = []
 /*
 describe(`Grab all the pdp SKU and Array of pdps`, () => {

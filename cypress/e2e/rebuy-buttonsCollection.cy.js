@@ -10,6 +10,17 @@ const getIframeBody = () => {
   .its('body').should('not.be.undefined')
   .then(cy.wrap);
 }
+
+const URL = '/collections/seamless-underwear'
+describe('Exit iframe', () => {
+    it('exit from iframe if any',() => {
+        cy.visit(URL);
+        // getIframeBody().find('#closeIconContainer').should('have.class', 'css-upw05v').click();
+        
+    });
+});
+
+
 const size = {
   0:'XS',
   1:'S',
@@ -30,6 +41,37 @@ const half = Math.ceil(len/2)
 // let pdpArr = pdps.slice(0,half)
 let pdpArr = ["/products/caribbean-sea-mesh-thong-panties","/products/caribbean-sea-mesh-highwaisted-panties","/products/caribbean-sea-mesh-brief-panties","/products/blue-opal-cotton-bralette","/products/blue-opal-cotton-brief","/products/blue-opal-cotton-bikini","/products/black-cotton-bralette-1","/products/black-cotton-brief-panties","/products/black-cotton-bikini-panties","/products/nude-brief-panties","/products/nude-high-waisted-panties","/products/black-mesh-brief-panties","/products/lime-punch-eco-silk-scarf","/products/black-thong","/products/black-mesh-thong-panties","/products/opal-blue-thong-panties","/products/laurel-green-bralette","/products/provincial-blue-bralette","/products/blue-iris-cheeky","/products/blue-iris-highwaisted","/products/castor-grey-brief","/products/el-sabor-thong","/products/lime-punch-bikini","/products/brief-white-panties","/products/white-cheeky","/products/fallen-rock-cotton-brief-panties","/products/black-cheeky-panties","/products/fallen-rock-high-waisted-panties","/products/fallen-rock-brief-panties","/products/laurel-green-high-waisted-panties","/products/luxe-strawberry-ice-brief-panties","/products/fallen-rock-bikini","/products/fallen-rock-cotton-bralette","/products/black-high-waisted-panties","/products/high-waisted-opal-blue-panties","/products/fallen-rock-cotton-bikini-panties","/products/fallen-rock-cotton-thong-panties","/products/black-bikini-panties","/products/grey-bikini-panties","/products/grey-cheeky-panties","/products/grey-high-waisted-panties","/products/sleek-tiger-bikini","/products/grey-thong-panties","/products/white-highwaisted-thong","/products/black-high-waisted-thong","/products/cheeky-laurel-green-underwear","/products/blue-opal-bikini-panties","/products/blue-opal-high-waisted-thong","/products/dark-palm-brief","/products/raindrop-thong-panties","/products/sleek-tiger-brief","/products/sleek-tiger-highwaisted","/products/sleek-tiger-thong","/products/sunkissed-thong","/products/espresso-thong","/products/laurel-green-brief-panties","/products/brief-provincial-blue-panties","/products/fallen-rock-thong","/products/provincial-blue-thong-panties","/products/fallen-rock-cheeky","/products/nude-thong","/products/highwaisted-nude-thong","/products/nude-cheeky","/products/castor-grey-thong","/products/peach-bloom-bralette"]
 
+
+/*
+    Option 2: Scroll down and find .this_sale selector
+    collection total height = 26,600
+    screenSize = 667
+    26600/2600 = 10
+
+*/
+const paginationHeight = 667
+describe(`Loop 41 times to get all products`, () => {
+    it(`It loops 40 times`, () => {
+        const totalHeight = 41;
+        let h = 1;
+        while( h < totalHeight){ 
+            cy.wait(1000);
+            cy.scrollTo(0, paginationHeight * h);
+            expect(h, 'to be less than', totalHeight);
+            h++;
+        }
+    })
+    
+    it(`Get amount of product array from the console`, () => {
+        //eby-price24562
+        cy.get(`.this_sale`).each( (items, i, list ) => {
+            console.log('---------Copy This Data---------')
+            console.log(list.length)
+            console.log('------------------')
+                 
+        })
+    })
+});
 
 /*
     .rebuy-title-container
